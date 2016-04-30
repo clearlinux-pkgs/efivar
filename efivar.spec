@@ -4,7 +4,7 @@
 #
 Name     : efivar
 Version  : 0.21
-Release  : 3
+Release  : 4
 URL      : https://github.com/rhinstaller/efivar/releases/download/0.21/efivar-0.21.tar.bz2
 Source0  : https://github.com/rhinstaller/efivar/releases/download/0.21/efivar-0.21.tar.bz2
 Summary  : Tools to manage UEFI variables
@@ -14,6 +14,7 @@ Requires: efivar-bin
 Requires: efivar-lib
 Requires: efivar-doc
 BuildRequires : popt-dev
+Patch1: build.patch
 
 %description
 efivar provides a simple command line interface to the UEFI variable facility.
@@ -55,6 +56,7 @@ lib components for the efivar package.
 
 %prep
 %setup -q -n efivar-0.21
+%patch1 -p1
 
 %build
 make V=1  %{?_smp_mflags}
