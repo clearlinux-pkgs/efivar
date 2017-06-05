@@ -4,7 +4,7 @@
 #
 Name     : efivar
 Version  : 31
-Release  : 9
+Release  : 10
 URL      : https://github.com/rhinstaller/efivar/releases/download/31/efivar-31.tar.bz2
 Source0  : https://github.com/rhinstaller/efivar/releases/download/31/efivar-31.tar.bz2
 Summary  : Tools to manage UEFI variables
