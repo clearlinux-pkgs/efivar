@@ -25,6 +25,8 @@ libefivar.so.1:LIBEFIVAR_0.24
 libefivar.so.1:LIBEFIVAR_1.28
 libefivar.so.1:LIBEFIVAR_1.29
 libefivar.so.1:LIBEFIVAR_1.30
+libefivar.so.1:LIBEFIVAR_1.33
+libefivar.so.1:LIBEFIVAR_1.35
 libefivar.so.1:_efi_set_variable
 libefivar.so.1:_efi_set_variable_variadic
 libefivar.so.1:efi_append_variable
@@ -36,6 +38,7 @@ libefivar.so.1:efi_error_set
 libefivar.so.1:efi_get_next_variable_name
 libefivar.so.1:efi_get_variable
 libefivar.so.1:efi_get_variable_attributes
+libefivar.so.1:efi_get_variable_exists
 libefivar.so.1:efi_get_variable_size
 libefivar.so.1:efi_guid_cmp
 libefivar.so.1:efi_guid_is_empty
@@ -74,6 +77,7 @@ libefivar.so.1:efidp_make_generic
 libefivar.so.1:efidp_make_hd
 libefivar.so.1:efidp_make_ipv4
 libefivar.so.1:efidp_make_mac_addr
+libefivar.so.1:efidp_make_nvdimm
 libefivar.so.1:efidp_make_nvme
 libefivar.so.1:efidp_make_pci
 libefivar.so.1:efidp_make_sas
