@@ -27,6 +27,7 @@ libefivar.so.1:LIBEFIVAR_1.29
 libefivar.so.1:LIBEFIVAR_1.30
 libefivar.so.1:LIBEFIVAR_1.33
 libefivar.so.1:LIBEFIVAR_1.35
+libefivar.so.1:LIBEFIVAR_1.36
 libefivar.so.1:_efi_set_variable
 libefivar.so.1:_efi_set_variable_variadic
 libefivar.so.1:efi_append_variable
@@ -35,13 +36,16 @@ libefivar.so.1:efi_del_variable
 libefivar.so.1:efi_error_clear
 libefivar.so.1:efi_error_get
 libefivar.so.1:efi_error_set
+libefivar.so.1:efi_get_logfile
 libefivar.so.1:efi_get_next_variable_name
 libefivar.so.1:efi_get_variable
 libefivar.so.1:efi_get_variable_attributes
 libefivar.so.1:efi_get_variable_exists
 libefivar.so.1:efi_get_variable_size
+libefivar.so.1:efi_get_verbose
 libefivar.so.1:efi_guid_cmp
 libefivar.so.1:efi_guid_is_empty
+libefivar.so.1:efi_guid_is_zero
 libefivar.so.1:efi_guid_to_id_guid
 libefivar.so.1:efi_guid_to_name
 libefivar.so.1:efi_guid_to_str
@@ -49,6 +53,7 @@ libefivar.so.1:efi_guid_to_symbol
 libefivar.so.1:efi_id_guid_to_guid
 libefivar.so.1:efi_name_to_guid
 libefivar.so.1:efi_set_variable
+libefivar.so.1:efi_set_verbose
 libefivar.so.1:efi_str_to_guid
 libefivar.so.1:efi_variable_export
 libefivar.so.1:efi_variable_free
