@@ -4,7 +4,7 @@
 #
 Name     : efivar
 Version  : 36
-Release  : 14
+Release  : 15
 URL      : https://github.com/rhboot/efivar/releases/download/36/efivar-36.tar.bz2
 Source0  : https://github.com/rhboot/efivar/releases/download/36/efivar-36.tar.bz2
 Summary  : Tools to manage UEFI variables
@@ -14,6 +14,7 @@ Requires: efivar-bin
 Requires: efivar-lib
 Requires: efivar-license
 Requires: efivar-man
+Patch1: 0001-Fix-the-cpi-uid-parsing.patch
 
 %description
 efivar provides a simple command line interface to the UEFI variable facility.
@@ -66,13 +67,14 @@ man components for the efivar package.
 
 %prep
 %setup -q -n efivar-36
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1531443342
+export SOURCE_DATE_EPOCH=1531945768
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -83,7 +85,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1531443342
+export SOURCE_DATE_EPOCH=1531945768
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/efivar
 cp COPYING %{buildroot}/usr/share/doc/efivar/COPYING
