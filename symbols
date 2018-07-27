@@ -45,7 +45,6 @@ libefivar.so.1:efi_get_variable_size
 libefivar.so.1:efi_get_verbose
 libefivar.so.1:efi_guid_cmp
 libefivar.so.1:efi_guid_is_empty
-libefivar.so.1:efi_guid_is_zero
 libefivar.so.1:efi_guid_to_id_guid
 libefivar.so.1:efi_guid_to_name
 libefivar.so.1:efi_guid_to_str

@@ -1,0 +1,35 @@
+From 31dea5d8a3dcca95b257d509f8cace3676c8b6f8 Mon Sep 17 00:00:00 2001
+From: Arzhan Kinzhalin <arzhan.i.kinzhalin@intel.com>
+Date: Thu, 26 Jul 2018 21:36:16 -0700
+Subject: [PATCH] Fix incorrect failure on absence of eui.
+
+Do not fail when there's no eui on an nvme device. This is a bug
+introduced in ff696a432b. nvme devices do not have to have eui.
+
+The previous version was correct and there's has_eui to indicate whether
+eui was successfully read.
+
+The issue causes efi_generate_file_device_path_from_esp() to fail on all
+the platforms which have ESP on an NVMe device.
+
+Signed-off-by: Arzhan Kinzhalin <arzhan.i.kinzhalin@intel.com>
+---
+ src/linux-nvme.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/src/linux-nvme.c b/src/linux-nvme.c
+index 00f53d5..dcd612a 100644
+--- a/src/linux-nvme.c
++++ b/src/linux-nvme.c
+@@ -117,8 +117,6 @@ parse_nvme(struct device *dev, const char *current, const char *root UNUSED)
+                 }
+                 dev->nvme_info.has_eui = 1;
+                 memcpy(dev->nvme_info.eui, eui, sizeof(eui));
+-        } else {
+-                return -1;
+         }
+ 
+         return pos0;
+-- 
+2.17.0
+
