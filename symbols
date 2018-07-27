@@ -76,6 +76,7 @@ libefivar.so.1:efidp_make_acpi_hid
 libefivar.so.1:efidp_make_acpi_hid_ex
 libefivar.so.1:efidp_make_atapi
 libefivar.so.1:efidp_make_edd10
+libefivar.so.1:efidp_make_emmc
 libefivar.so.1:efidp_make_file
 libefivar.so.1:efidp_make_generic
 libefivar.so.1:efidp_make_hd
