@@ -4,7 +4,7 @@
 #
 Name     : efivar
 Version  : 36
-Release  : 17
+Release  : 18
 URL      : https://github.com/rhboot/efivar/releases/download/36/efivar-36.tar.bz2
 Source0  : https://github.com/rhboot/efivar/releases/download/36/efivar-36.tar.bz2
 Summary  : Tools to manage UEFI variables
