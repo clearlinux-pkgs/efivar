@@ -4,16 +4,16 @@
 #
 Name     : efivar
 Version  : 36
-Release  : 18
+Release  : 19
 URL      : https://github.com/rhboot/efivar/releases/download/36/efivar-36.tar.bz2
 Source0  : https://github.com/rhboot/efivar/releases/download/36/efivar-36.tar.bz2
 Summary  : Tools to manage UEFI variables
 Group    : Development/Tools
 License  : LGPL-2.1
-Requires: efivar-bin
-Requires: efivar-lib
-Requires: efivar-license
-Requires: efivar-man
+Requires: efivar-bin = %{version}-%{release}
+Requires: efivar-lib = %{version}-%{release}
+Requires: efivar-license = %{version}-%{release}
+Requires: efivar-man = %{version}-%{release}
 Patch1: 0001-Fix-incorrect-failure-on-absence-of-eui.patch
 Patch2: 0002-Add-emmc-block-device-parser.patch
 
@@ -23,8 +23,7 @@ efivar provides a simple command line interface to the UEFI variable facility.
 %package bin
 Summary: bin components for the efivar package.
 Group: Binaries
-Requires: efivar-license
-Requires: efivar-man
+Requires: efivar-license = %{version}-%{release}
 
 %description bin
 bin components for the efivar package.
@@ -33,9 +32,10 @@ bin components for the efivar package.
 %package dev
 Summary: dev components for the efivar package.
 Group: Development
-Requires: efivar-lib
-Requires: efivar-bin
-Provides: efivar-devel
+Requires: efivar-lib = %{version}-%{release}
+Requires: efivar-bin = %{version}-%{release}
+Provides: efivar-devel = %{version}-%{release}
+Requires: efivar = %{version}-%{release}
 
 %description dev
 dev components for the efivar package.
@@ -44,7 +44,7 @@ dev components for the efivar package.
 %package lib
 Summary: lib components for the efivar package.
 Group: Libraries
-Requires: efivar-license
+Requires: efivar-license = %{version}-%{release}
 
 %description lib
 lib components for the efivar package.
@@ -75,8 +75,9 @@ man components for the efivar package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1532734059
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1565019090
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -86,11 +87,12 @@ export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
+
 %install
-export SOURCE_DATE_EPOCH=1532734059
+export SOURCE_DATE_EPOCH=1565019090
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/efivar
-cp COPYING %{buildroot}/usr/share/doc/efivar/COPYING
+mkdir -p %{buildroot}/usr/share/package-licenses/efivar
+cp COPYING %{buildroot}/usr/share/package-licenses/efivar/COPYING
 %make_install
 
 %files
@@ -112,21 +114,6 @@ cp COPYING %{buildroot}/usr/share/doc/efivar/COPYING
 /usr/lib64/libefivar.so
 /usr/lib64/pkgconfig/efiboot.pc
 /usr/lib64/pkgconfig/efivar.pc
-
-%files lib
-%defattr(-,root,root,-)
-/usr/lib64/libefiboot.so.1
-/usr/lib64/libefiboot.so.1.36
-/usr/lib64/libefivar.so.1
-/usr/lib64/libefivar.so.1.36
-
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/efivar/COPYING
-
-%files man
-%defattr(-,root,root,-)
-/usr/share/man/man1/efivar.1
 /usr/share/man/man3/efi_append_variable.3
 /usr/share/man/man3/efi_del_variable.3
 /usr/share/man/man3/efi_get_next_variable_name.3
@@ -156,3 +143,18 @@ cp COPYING %{buildroot}/usr/share/doc/efivar/COPYING
 /usr/share/man/man3/efi_variable_set_name.3
 /usr/share/man/man3/efi_variable_t.3
 /usr/share/man/man3/efi_variables_supported.3
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/libefiboot.so.1
+/usr/lib64/libefiboot.so.1.36
+/usr/lib64/libefivar.so.1
+/usr/lib64/libefivar.so.1.36
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/efivar/COPYING
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/efivar.1
