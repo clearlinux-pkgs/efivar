@@ -4,7 +4,7 @@
 #
 Name     : efivar
 Version  : 37
-Release  : 21
+Release  : 22
 URL      : https://github.com/rhboot/efivar/releases/download/37/efivar-37.tar.bz2
 Source0  : https://github.com/rhboot/efivar/releases/download/37/efivar-37.tar.bz2
 Summary  : Tools to manage UEFI variables
@@ -14,6 +14,9 @@ Requires: efivar-bin = %{version}-%{release}
 Requires: efivar-lib = %{version}-%{release}
 Requires: efivar-license = %{version}-%{release}
 Requires: efivar-man = %{version}-%{release}
+Patch1: build.patch
+Patch2: 0001-Fix-symbol-versioning-to-use-symver-attribute-rather.patch
+Patch3: 0002-Only-use-new-symbol-versioning-with-new-gcc.patch
 
 %description
 efivar provides a simple command line interface to the UEFI variable facility.
@@ -67,26 +70,26 @@ man components for the efivar package.
 %prep
 %setup -q -n efivar-37
 cd %{_builddir}/efivar-37
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1580427422
+export SOURCE_DATE_EPOCH=1615954126
 export GCC_IGNORE_WERROR=1
-export AR=gcc-ar
-export RANLIB=gcc-ranlib
-export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1580427422
+export SOURCE_DATE_EPOCH=1615954126
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/efivar
 cp %{_builddir}/efivar-37/COPYING %{buildroot}/usr/share/package-licenses/efivar/960c191c13417c4d81f2aa4315b0d0e8ade42436

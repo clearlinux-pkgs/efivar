@@ -1,0 +1,50 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Peter Jones <pjones@redhat.com>
+Date: Thu, 1 Oct 2020 10:23:49 -0400
+Subject: [PATCH] Only use new symbol versioning with new gcc.
+
+57c6d01b5179b76a9244d4970f66c7cc1f643bd2 changes to using new symbol
+versioning, but doesn't take the compiler version into account.
+
+Signed-off-by: Peter Jones <pjones@redhat.com>
+
+[pmccarty] Modify change to use __GNUC_PREREQ from glibc instead.
+
+Upstream-Status: Backport
+Reference: https://github.com/rhboot/efivar/commit/ea66c58934
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ src/util.h | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/src/util.h b/src/util.h
+index f45ae4c..25a85fc 100644
+--- a/src/util.h
++++ b/src/util.h
+@@ -40,6 +40,12 @@
+ #include <tgmath.h>
+ #include <unistd.h>
+ 
++/* Note that the upstream commit includes compiler.h instead, an in-tree header
++ * that defines GNUC_PREREQ instead of the equivalent __GNUC_PREREQ macro from
++ * glibc.
++ */
++#include <features.h>
++
+ #define UNUSED __attribute__((__unused__))
+ #define HIDDEN __attribute__((__visibility__ ("hidden")))
+ #define PUBLIC __attribute__((__visibility__ ("default")))
+@@ -50,7 +56,12 @@
+ #define PRINTF(...) __attribute__((__format__(printf, __VA_ARGS__)))
+ #define FLATTEN __attribute__((__flatten__))
+ #define PACKED __attribute__((__packed__))
+-#define VERSION(sym, ver) __attribute__ ((symver (# ver)))
++#if __GNUC_PREREQ(10,0)
++# define VERSION(sym, ver) __attribute__ ((symver (# ver)))
++#else
++# define VERSION(sym, ver) __asm__(".symver " # sym "," # ver)
++#endif
++
+ 
+ /*
+  * I'm not actually sure when these appear, but they're present in the

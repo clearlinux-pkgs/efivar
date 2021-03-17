@@ -44,12 +44,10 @@ libefivar.so.1:efi_get_variable_exists
 libefivar.so.1:efi_get_variable_size
 libefivar.so.1:efi_get_verbose
 libefivar.so.1:efi_guid_cmp
-libefivar.so.1:efi_guid_is_empty
 libefivar.so.1:efi_guid_to_id_guid
 libefivar.so.1:efi_guid_to_name
 libefivar.so.1:efi_guid_to_str
 libefivar.so.1:efi_guid_to_symbol
-libefivar.so.1:efi_id_guid_to_guid
 libefivar.so.1:efi_name_to_guid
 libefivar.so.1:efi_set_variable
 libefivar.so.1:efi_set_verbose
