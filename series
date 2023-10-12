@@ -1,3 +1,0 @@
-build.patch
-0001-Fix-symbol-versioning-to-use-symver-attribute-rather.patch
-0002-Only-use-new-symbol-versioning-with-new-gcc.patch
