@@ -1,5 +1,5 @@
 PKG_NAME := efivar
-URL = https://github.com/rhboot/efivar/releases/download/38/efivar-38.tar.bz2
+URL = https://github.com/rhboot/efivar/archive/39/efivar-39.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
